@@ -205,9 +205,9 @@ class XiaomiPeridotUdfpsHandler : public UdfpsHandler {
                                       : LHBM_TARGET_BRIGHTNESS_OFF_FINGER_UP;
         ioctl(disp_fd_.get(), MI_DISP_IOCTL_SET_LOCAL_HBM, &req);
 
-        if (pressed) {
-            mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS, PARAM_FOD_PRESSED);
-        }
+        // Notify HAL of both press and release events
+        mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS,
+                        pressed ? PARAM_FOD_PRESSED : PARAM_FOD_RELEASED);
     }
 };
 
