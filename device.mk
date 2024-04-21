@@ -471,7 +471,8 @@ PRODUCT_PACKAGES += \
     libsensorndkbridge \
     sensors.dynamic_sensor_hal \
     android.frameworks.sensorservice-V1-ndk.vendor \
-    android.frameworks.sensorservice@1.0.vendor
+    android.frameworks.sensorservice@1.0.vendor \
+    android.frameworks.sensorservice@1.0
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
