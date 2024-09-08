@@ -54,7 +54,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     audioadsprpcd \
-    audio.primary.pineapple \
     audio.bluetooth.default \
     audio.r_submix.default \
     audio.usb.default
