@@ -61,7 +61,9 @@ blob_fixups: blob_fixups_user_type = {
        .regex_replace(r'/odm/bin/', r'/vendor/bin/'),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so'),
-    'vendor/lib64/libqcrilNr.so|vendor/lib64/libril-db.so': blob_fixup()
+    ('vendor/lib64/libqcrilNr.so',
+     'vendor/lib64/libril-db.so'
+    ): blob_fixup()
         .binary_regex_replace(rb'persist\.vendor\.radio\.poweron_opt', rb'persist.vendor.radio.poweron_ign'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
