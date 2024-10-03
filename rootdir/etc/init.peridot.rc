@@ -6,3 +6,10 @@ on boot
 # Monitor and apply Turbo Charging value via system property persist.sys.turbo_charge_current
 on property:persist.sys.turbo_charge_current=*
     write /sys/class/power_supply/battery/constant_charge_current ${persist.sys.turbo_charge_current}
+
+on property:vendor.post_boot.parsed=1
+    # IRQ Tuning
+    # IRQ 70: msm_drm0
+    # IRQ 222: kgsl_3d0_irq
+    write /proc/irq/70/smp_affinity_list 2
+    write /proc/irq/222/smp_affinity_list 1
