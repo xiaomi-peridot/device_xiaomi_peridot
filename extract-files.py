@@ -222,7 +222,7 @@ blob_fixups: blob_fixups_user_type = {
        .add_needed('libbinder_shim.so')
        .add_needed('libinput_shim.so'),
     'system_ext/lib64/libwfdservice.so': blob_fixup()
-       .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V3-cpp.so'),
+       .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V4-cpp.so'),
     ('vendor/bin/hw/vendor.dolby.media.c2@1.0-service',
      'vendor/bin/hw/vendor.qti.media.c2@1.0-service',
      'vendor/bin/hw/vendor.qti.media.c2audio@1.0-service'
