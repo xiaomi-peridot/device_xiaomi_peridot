@@ -53,6 +53,11 @@ blob_fixups: blob_fixups_user_type = {
        .add_needed('libinput_shim.so'),
     'system_ext/lib64/libwfdservice.so': blob_fixup()
        .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V3-cpp.so'),
+    ('vendor/bin/hw/vendor.dolby.media.c2@1.0-service',
+     'vendor/bin/hw/vendor.qti.media.c2@1.0-service',
+     'vendor/bin/hw/vendor.qti.media.c2audio@1.0-service'
+     ): blob_fixup()
+        .add_needed('libcodec2_hidl_shim.so'),
     ('vendor/etc/media_codecs.xml',
      'vendor/etc/media_codecs_cliffs_v0.xml',
     ): blob_fixup()

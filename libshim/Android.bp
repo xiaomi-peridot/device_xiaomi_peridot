@@ -11,3 +11,16 @@ cc_library_shared {
 
     vendor_available: true,
 }
+
+cc_library_shared {
+    name: "libcodec2_hidl_shim",
+    srcs: [
+          "libcodec2_hidl_shim.cpp"
+    ],
+    shared_libs: [
+          "libui",
+          "libutils",
+    ],
+
+    vendor: true,
+}
