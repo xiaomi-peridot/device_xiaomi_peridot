@@ -59,7 +59,6 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.xiaomi u:object_r:hal_fingerprint_default_exec:s0
 /data/vendor/misc/mi_fp(/.*)? u:object_r:vendor_fingerprint_data_file:s0
 /sys/devices/virtual/touch/tp_dev/fod_status u:object_r:sysfs_tp_fodstatus:s0
-/sys/devices/virtual/touch/touch_dev/fod_press_status u:object_r:sysfs_tp_fodstatus:s0
 /data/vendor/fpc(/.*)? u:object_r:vendor_fingerprint_data_file:s0
 /data/vendor/fpdump(/.*)? u:object_r:vendor_fingerprint_data_file_fpdump:s0
 /data/vendor/goodix(/.*)? u:object_r:vendor_fingerprint_data_file:s0
@@ -106,6 +105,7 @@
 /sys/devices/platform/goodix_ts.0/switch_report_rate u:object_r:sysfs_htsr:s0
 /sys/devices/virtual/touch/touch_dev/ear_sensor u:object_r:sysfs_tp_virtual_prox:s0
 /sys/devices/virtual/touch/touch_dev/palm_sensor u:object_r:sysfs_tp_virtual_prox:s0
+/sys/devices/virtual/touch/touch_dev/fod_press_status u:object_r:sysfs_touchpanel:s0
 
 # Vibrator
 /(odm|vendor/odm)/bin/hw/vibratorfeature-wrapper u:object_r:hal_vibrator_default_exec:s0
