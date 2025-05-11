@@ -12,8 +12,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.hardware.display.DisplayManager;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
@@ -32,6 +34,9 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String TAG = "XiaomiParts";
     private static final boolean DEBUG = true;
     private static final int DOUBLE_TAP_TO_WAKE_MODE = 14;
+    private static final int Touch_Fod_Enable     = 10;
+    private static final int Touch_Aod_Enable     = 11;
+    private static final int Touch_FodIcon_Enable = 16;
 
     private ITouchFeature xiaomiTouchFeatureAidl;
 
@@ -87,6 +92,19 @@ public class BootCompletedReceiver extends BroadcastReceiver {
             Log.e(TAG, "DisplayManager service not available");
         }
 
+        // force-enable SoFOD on lock screen
+        initTouchFeatureService();
+        try {
+            if (xiaomiTouchFeatureAidl != null) {
+            xiaomiTouchFeatureAidl.setTouchMode(0, Touch_Fod_Enable, 1);
+            xiaomiTouchFeatureAidl.setTouchMode(0, Touch_Aod_Enable, 1);
+            xiaomiTouchFeatureAidl.setTouchMode(0, Touch_FodIcon_Enable, 1);
+            if (DEBUG) Log.i(TAG, "SoFOD features enabled on lock screen");
+            }
+        } catch (Exception e) {
+          Log.e(TAG, "Error setting SoFOD touch mode", e);
+        }
+
         // Create and register ContentObserver for DOUBLE_TAP_TO_WAKE setting
         ContentObserver observer = new ContentObserver(new Handler()) {
             @Override
@@ -109,19 +127,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
      */
     private void updateTapToWakeStatus(Context context) {
         try {
-            if (xiaomiTouchFeatureAidl == null) {
-                try {
-                    String name = "default";
-                    String fqName = ITouchFeature.DESCRIPTOR + "/" + name;
-                    IBinder binder = android.os.Binder.allowBlocking(
-                            android.os.ServiceManager.waitForDeclaredService(fqName));
-                    xiaomiTouchFeatureAidl = ITouchFeature.Stub.asInterface(binder);
-                } catch (Exception e) {
-                    Log.e(TAG, "Failed to initialize Touch Feature service", e);
-                    return; // Exit early if initialization fails
-                }
-            }
-
+            if (xiaomiTouchFeatureAidl == null) initTouchFeatureService();
             boolean enabled = Settings.Secure.getInt(
                                       context.getContentResolver(),
                                       Settings.Secure.DOUBLE_TAP_TO_WAKE, 0) == 1;
@@ -136,6 +142,21 @@ public class BootCompletedReceiver extends BroadcastReceiver {
             }
         } catch (Exception e) {
             Log.e(TAG, "Failed to update Tap to Wake status", e);
+        }
+    }
+
+    private void initTouchFeatureService() {
+        if (xiaomiTouchFeatureAidl != null) return;
+        try {
+            String name = "default";
+            String fqName = ITouchFeature.DESCRIPTOR + "/" + name;
+            IBinder binder = Binder.allowBlocking(
+                    ServiceManager.waitForDeclaredService(fqName)
+            );
+            xiaomiTouchFeatureAidl = ITouchFeature.Stub.asInterface(binder);
+            if (DEBUG) Log.i(TAG, "TouchFeature service connected");
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to connect to TouchFeature service", e);
         }
     }
 
