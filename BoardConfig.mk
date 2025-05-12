@@ -115,7 +115,7 @@ PRODUCT_COPY_FILES += \
 	$(PREBUILT_PATH)/images/kernel:kernel
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_peridot
+$(call soong_config_set,libinit,vendor_init_lib,//$(DEVICE_PATH):libinit_peridot)
 TARGET_RECOVERY_DEVICE_MODULES := libinit_peridot
 
 # Kernel modules
