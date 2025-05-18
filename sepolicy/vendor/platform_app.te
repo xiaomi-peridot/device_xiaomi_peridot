@@ -5,3 +5,4 @@ allow platform_app hal_touchfeature_xiaomi_service:service_manager find;
 allow platform_app vendor_file:file { read open getattr map execute watch };
 allow platform_app vendor_displayfeature_prop:file read;
 allow platform_app vendor_file:file { read open getattr map execute watch };
+binder_call(platform_app, hal_touchfeature_xiaomi_default)
