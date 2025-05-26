@@ -61,11 +61,8 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.xiaomi.hw.touchfeature-V1-ndk',
     ): lib_fixup_vendor_suffix,
     (
-        'audio.primary.pineapple',
-        'libagmclient',
-        'libagmmixer',
-        'libpalclient',
-        'libwpa_client',
+        'libar-pal',
+        'liblx-osal',
         'libpalclient',
     ): lib_fixup_remove,
 }
