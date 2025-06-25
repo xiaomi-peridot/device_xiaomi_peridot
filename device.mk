@@ -252,6 +252,9 @@ PRODUCT_PACKAGES += \
     android.hardware.health-service.qti \
     android.hardware.health-service.qti_recovery
 
+# HWUI
+TARGET_USES_VULKAN := true
+
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.memory.block@1.0.vendor \
