@@ -1685,7 +1685,6 @@ vendor/lib64/libllvm-glnext.so
 vendor/lib64/libllvm-qcom.so
 vendor/lib64/libllvm-qgl.so
 vendor/lib64/libopencl_loader.so
-vendor/lib64/libq3dtools_adreno.so
 vendor/lib64/vkbadreno_utils.so;MAKE_COPY_RULE_ONLY
 vendor/lib64/vkbgsl.so;MAKE_COPY_RULE_ONLY
 vendor/lib64/vkbllvm-glnext.so;MAKE_COPY_RULE_ONLY
@@ -1694,7 +1693,6 @@ vendor/lib64/vkbllvm-qgl.so;MAKE_COPY_RULE_ONLY
 # Graphics firmware
 odm/firmware/gen70900_zap.mbn
 odm/firmware/gen71100_zap.mbn
-vendor/firmware/a740v3_sqe.fw
 vendor/firmware/gen70900_aqe.fw
 vendor/firmware/gen70900_sqe.fw
 vendor/firmware/gen71100_gmu.bin
