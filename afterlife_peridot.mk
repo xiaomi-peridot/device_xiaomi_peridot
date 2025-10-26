@@ -9,7 +9,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/afterlife/config/common_full_phone.mk)
 
 # Inherit from peridot device
 $(call inherit-product, device/xiaomi/peridot/device.mk)
@@ -17,7 +17,17 @@ $(call inherit-product, device/xiaomi/peridot/device.mk)
 # Inherit from the MiuiCamera setup
 $(call inherit-product-if-exists, device/xiaomi/peridot-miuicamera/device.mk)
 
-PRODUCT_NAME := lineage_peridot
+# The AfterLifeOS flags
+AFTERLIFE_BUILD_TYPE := OFFICIAL
+AFTERLIFE_MAINTAINER := ramshell688
+AFTERLIFE_GAPPS := true
+
+# Device configs
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_HAS_UDFPS := true
+TARGET_UDFPS_ANIMATIONS := true
+
+PRODUCT_NAME := afterlife_peridot
 PRODUCT_DEVICE := peridot
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := POCO

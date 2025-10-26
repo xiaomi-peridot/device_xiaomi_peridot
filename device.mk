@@ -245,6 +245,10 @@ $(call soong_config_set,lineage_health,fast_charge_value_none,0)
 $(call soong_config_set,lineage_health,fast_charge_value_fast_charge,1)
 $(call soong_config_set,lineage_health,fast_charge_value_super_fast_charge,2)
 
+# Log
+PRODUCT_PACKAGES += \
+    MatLog
+
 # Media
 PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml
